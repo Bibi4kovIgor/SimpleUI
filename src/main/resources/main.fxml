@@ -10,5 +10,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.MainController"
             prefHeight="400.0" prefWidth="600.0">
+    <Button fx:id="button1" onAction="#clickEvent" text="ClickMe!" layoutX="200" layoutY="300"/>
+    <TextArea fx:id="textArea1" text="blah blah blah"/>
 
 </AnchorPane>

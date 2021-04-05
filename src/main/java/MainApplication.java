@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,11 +31,13 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Button button1 = new Button("Some Button click!");
+        Button button2 = new Button("GoTo another page");
         TextArea myTextArea = new TextArea("Some Text");
         myTextArea.setWrapText(true);
         myTextArea.setPrefSize(50, 20);
-        StackPane myStackPane = new StackPane(myTextArea, button1);
-
+        StackPane myStackPane = new StackPane(myTextArea, button1, button2);
+        StackPane.setAlignment(button1, Pos.CENTER_LEFT);
+        StackPane.setAlignment(button2, Pos.CENTER_RIGHT);
         Scene myScene = new Scene(myStackPane, 300,400);
 
         primaryStage.setTitle("Some Title");
@@ -42,6 +45,8 @@ public class MainApplication extends Application {
         primaryStage.show();
 
         clickButtonEvent(button1.getText(), button1, myTextArea);
+
+        clickButtonEvent(primaryStage, button2);
     }
 
     private void clickButtonEvent(String text, Button myButton, TextArea myTextArea) {
@@ -52,7 +57,7 @@ public class MainApplication extends Application {
         //Equivalent code using an inner class instead of EventHandler.
         myButton.setOnAction((ActionEvent a) -> {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
                 stage.setScene(new Scene(root));
             } catch (IOException exception) {
                 exception.printStackTrace();
